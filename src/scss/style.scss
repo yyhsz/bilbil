@@ -490,7 +490,7 @@ header {
 /* AD */
 .ad-box {
     width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     .ad-box-top {
         margin-bottom: 16px;
         height: 36px;
@@ -575,4 +575,11 @@ header {
             border-radius: 3px;
         }
     }
+
+}
+/* 分割线图片 */
+.split-line-img{
+    width: 1000px;
+    position: relative;
+    img{width: 100%;}
 }
