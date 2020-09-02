@@ -51,3 +51,16 @@ registerBox.on('mouseenter', (e) => {
 registerBox.on('mouseleave', (e) => {
     clearInterval(timer)
 })
+
+//轮播图
+const mySwiper = new Swiper('.hotBox .swiper-container', {
+    loop: true,
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    }
+});
