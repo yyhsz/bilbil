@@ -52,8 +52,8 @@ registerBox.on('mouseleave', (e) => {
     clearInterval(timer)
 })
 
-//轮播图
-const mySwiper = new Swiper('.hotBox .swiper-container', {
+//轮播图1
+const mySwiper1 = new Swiper('.main-slide.swiper-container', {
     loop: true,
     autoplay: {
         delay: 2000,
@@ -64,3 +64,13 @@ const mySwiper = new Swiper('.hotBox .swiper-container', {
         clickable: true
     }
 });
+//轮播图2
+const mySwiper2 = new Swiper('.recommand-box.swiper-container', {
+    loop: true, // 循环模式选项
+    
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+});
+console.log(mySwiper2);
