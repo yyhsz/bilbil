@@ -1,7 +1,12 @@
 //防抖
-function debounce(fn,delay=100){
-    let timer = setTimeout(fn,delay)
-
+function debounce(fn, delay = 100) {
+    let timer = null
+    return function () {
+        if (timer) { clearTimeout(timer) }
+        timer = setTimeout(() => {
+            fn.apply(this)
+        }, delay)
+    }
 }
 
 //游戏中心，右侧悬浮图展示功能
@@ -137,23 +142,25 @@ slideBox.forEach((ele, index) => {
     const $ele = $(ele)
     //根据不同totalNum算出slide图片的大小
     $ele.on('mousemove', (e) => {
-        let ratio = (e.pageX - $ele.offset().left) / width
-        $(progress[index]).css({ width: 100 * ratio + '%' })
-        //判断ratio对应的第几张图
-        const num = Math.round(ratio * totalNum) < 1 ? 1 : (Math.round(ratio * totalNum) === totalNum ? totalNum : Math.round(ratio * totalNum))
-        //n为行 m为列
-        let n, m
-        if (num <= 10) {
-            n = 1
-            m = num
-        } else {
-            n = Math.ceil(num / 10)
-            m = num % 10
-        }
-        $ele.find('.slide').css({
-            backgroundPositionX: -(n - 1) * height,
-            backgroundPositionY: -(m - 1) * width
-        })
+        debounce(() => {
+            let ratio = (e.pageX - $ele.offset().left) / width
+            $(progress[index]).css({ width: 100 * ratio + '%' })
+            //判断ratio对应的第几张图
+            const num = Math.round(ratio * totalNum) < 1 ? 1 : (Math.round(ratio * totalNum) === totalNum ? totalNum : Math.round(ratio * totalNum))
+            //n为行 m为列
+            let n, m
+            if (num <= 10) {
+                n = 1
+                m = num
+            } else {
+                n = Math.ceil(num / 10)
+                m = num % 10
+            }
+            $ele.find('.slide').css({
+                backgroundPositionX: -(n - 1) * height,
+                backgroundPositionY: -(m - 1) * width
+            })
+        }, 200)()
     })
 })
 
