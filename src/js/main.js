@@ -145,6 +145,7 @@ slideBox.forEach((ele, index) => {
         debounce(() => {
             let ratio = (e.pageX - $ele.offset().left) / width
             $(progress[index]).css({ width: 100 * ratio + '%' })
+            console.log(progress[index]);
             //判断ratio对应的第几张图
             const num = Math.round(ratio * totalNum) < 1 ? 1 : (Math.round(ratio * totalNum) === totalNum ? totalNum : Math.round(ratio * totalNum))
             //n为行 m为列
@@ -160,7 +161,7 @@ slideBox.forEach((ele, index) => {
                 backgroundPositionX: -(n - 1) * height,
                 backgroundPositionY: -(m - 1) * width
             })
-        }, 200)()
+        })()
     })
 })
 
