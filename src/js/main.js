@@ -133,11 +133,10 @@ plan.add((result) => {
 
 //移动到视频上方出现跟随幻灯片效果
 const slideBox = Array.from($('.slide-box'))
-const width = $(slideBox[0]).width()
-const height = $(slideBox[0]).height()
+const width = 170
+const height = 96
 const progress = Array.from($('.progress span i'))
-const totalNum = 46 //真实开发中这个数据从服务器获取
-console.log(progress);
+const totalNum = 100 //真实开发中这个数据从服务器获取
 slideBox.forEach((ele, index) => {
     const $ele = $(ele)
     //根据不同totalNum算出slide图片的大小
@@ -145,7 +144,6 @@ slideBox.forEach((ele, index) => {
         debounce(() => {
             let ratio = (e.pageX - $ele.offset().left) / width
             $(progress[index]).css({ width: 100 * ratio + '%' })
-            console.log(progress[index]);
             //判断ratio对应的第几张图
             const num = Math.round(ratio * totalNum) < 1 ? 1 : (Math.round(ratio * totalNum) === totalNum ? totalNum : Math.round(ratio * totalNum))
             //n为行 m为列
@@ -158,10 +156,34 @@ slideBox.forEach((ele, index) => {
                 m = num % 10
             }
             $ele.find('.slide').css({
-                backgroundPositionX: -(n - 1) * height,
-                backgroundPositionY: -(m - 1) * width
+                backgroundPositionX: -(m - 1) * width ,
+                backgroundPositionY: -(n - 1) * height + 10 
             })
         })()
     })
 })
+
+
+//elevator
+const elevator = $('.elevator ul')
+const box = $('.elevator-item')
+for(let i = 0;i<box.length;i++){
+    const li = document.createElement('li')
+    li.innerText = $(box[i]).find('.ad-slogen').text()
+    $(li).on('click',(e)=>{
+        window.scrollTo({
+            left:0,
+            top:box[i].getBoundingClientRect().top + document.documentElement.scrollTop,
+            behavior:'smooth'
+        })
+    })
+    elevator.append(li)
+}
+$('.back-top').on('click',(e)=>{
+    window.scrollTo({
+        left:0,
+        top:0,    
+    })
+})
+
 
