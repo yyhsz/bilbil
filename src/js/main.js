@@ -119,7 +119,7 @@ plan.add((result) => {
         </div>`
     }
     //将内容渲染到html
-    recommandBoxWrapper.html(str)
+    // recommandBoxWrapper.html(str)
     //必须在内容生成后创建swiper对象
     //轮播图2
     const mySwiper2 = new Swiper('.recommand-box.swiper-container', {
