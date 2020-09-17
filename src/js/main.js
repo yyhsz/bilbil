@@ -80,7 +80,7 @@ const mySwiper1 = new Swiper('.main-slide.swiper-container', {
 const plan = $.Callbacks()
 const recommandBoxWrapper = $('.recommand-box .swiper-wrapper')
 $.ajax({
-    url: '/bilibili/group.json',
+    url: '/bilbil/group.json',
     method: 'get',
     dataTyle: 'json',
     success: function (result) {
